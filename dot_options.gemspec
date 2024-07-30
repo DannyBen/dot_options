@@ -5,7 +5,7 @@ require 'dot_options/version'
 Gem::Specification.new do |s|
   s.name        = 'dot_options'
   s.version     = DotOptions::VERSION
-  s.summary     = 'Options object with dot-notation support'
+  s.summary     = 'Options object with dot-notation access'
   s.description = 'Convert any hash to a deep dot-notation object'
   s.authors     = ['Danny Ben Shitrit']
   s.email       = 'db@dannyben.com'
