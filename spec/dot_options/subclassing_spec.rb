@@ -1,12 +1,12 @@
 class Skin < DotOptions
   DEFAULTS = {
-    color: :black,
+    color:  :black,
     border: { color: :red, width: 3 },
   }
 
-  def initialize(options = nil, *)
+  def initialize(options = nil, **kwargs)
     opts = DEFAULTS.merge(options || {})
-    super(opts, *)
+    super(opts, **kwargs)
   end
 end
 
