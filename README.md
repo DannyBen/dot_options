@@ -67,10 +67,9 @@ class Skin < DotOptions
     background: { color: :lime, texture: 'Stripes' },
   }
 
-  def initialize(options = nil, **kwargs)
-    opts = DEFAULTS.merge(options || {})
-    super(opts, **kwargs)
-  en
+  def initialize(options = nil)
+    super DEFAULTS.merge(options || {})
+  end
 end
 
 # Get an object with the default settings
