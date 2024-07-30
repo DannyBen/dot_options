@@ -83,7 +83,7 @@ p skin.color
 #=> :blue
 
 # Note that when initializing a subclass with a hash, it will replace
-# the given branch. In this case border.width will be erased.
+# the given branch. In this case border.width will be lost.
 skin = Skin.new border: { color: :yellow }
 puts skin.border  
 #=> color = :yellow
@@ -93,9 +93,6 @@ skin = Skin.new { border.color = :yellow }
 puts skin.border
 #=> color = :yellow
 #=> width = 3
-
-
-
 ```
 
 ## Contributing / Support

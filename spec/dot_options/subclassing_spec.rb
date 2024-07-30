@@ -36,8 +36,8 @@ describe 'DotOptions subclassing' do
   end
 
   context 'when initializing with a block' do
-    subject { Skin.new { border.color = :dark_red }  }
-    
+    subject { Skin.new { border.color = :dark_red } }
+
     it 'evaluates the block with the instance context' do
       expect(subject.border.color).to eq :dark_red
     end

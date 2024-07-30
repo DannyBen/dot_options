@@ -9,7 +9,7 @@ class DotOptions
     @key = nil
     @parent = nil
     build_options
-    instance_eval(&block) if block_given?  # for subclasses
+    instance_eval(&block) if block
   end
 
   def inspect
