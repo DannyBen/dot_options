@@ -8,6 +8,7 @@ group :development do
 end
 
 group :test do
+  gem 'docspec'
   gem 'rspec'
   gem 'rspec_approvals'
   gem 'simplecov'
