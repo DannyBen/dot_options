@@ -17,6 +17,8 @@ $ gem install dot_options
 ## Usage
 
 ```ruby
+require 'dot_options'
+
 # Initialize a DotOptions object with a hash:
 opts = {
   debug:  true,
@@ -49,6 +51,35 @@ p options
 # => { debug: true, output: { color: true },
 # =>   skin: { background: { color: :black, texture: "Stripes" },
 # =>   foreground: { color: :white, font: "JetBrains Mono" } } }
+```
+
+### Subclassing
+
+Subclassing `DotOptions` is a useful way to have an object with default options.
+
+```ruby
+require 'dot_options'
+
+class Skin < DotOptions
+  DEFAULTS = {
+    color: :black,
+    border: { color: :red, width: 3 },
+    background: { color: :lime, texture: 'Stripes' },
+  }
+
+  def initialize(options = nil, *)
+    opts = DEFAULTS.merge(options || {})
+    super(opts, *)
+  end
+end
+
+# Get an object with the default settings
+skin = Skin.new 
+p skin.background.color  # => :lime
+
+# Get an object and override some settings
+skin = Skin.new color: :blue
+p skin.color  # => :blue
 ```
 
 ## Contributing / Support
