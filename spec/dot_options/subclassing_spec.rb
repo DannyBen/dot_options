@@ -4,9 +4,8 @@ class Skin < DotOptions
     border: { color: :red, width: 3 },
   }
 
-  def initialize(options = nil, **kwargs)
-    opts = DEFAULTS.merge(options || {})
-    super(opts, **kwargs)
+  def initialize(options = nil)
+    super DEFAULTS.merge(options || {})
   end
 end
 

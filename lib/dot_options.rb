@@ -1,12 +1,13 @@
 class DotOptions
   OptionNotFoundError = Class.new StandardError
 
-  attr_reader :options, :key, :parent
+  attr_reader :options
+  attr_accessor :key, :parent
 
-  def initialize(options = {}, key: nil, parent: nil)
+  def initialize(options = {})
     @options = options
-    @key = key
-    @parent = parent
+    @key = nil
+    @parent = nil
     build_options
   end
 
@@ -49,7 +50,12 @@ private
 
   def build_options
     options.each do |key, value|
-      options[key] = DotOptions.new(value, key: key, parent: self) if value.is_a?(Hash)
+      next unless value.is_a? Hash
+
+      sub_option = DotOptions.new(value)
+      sub_option.key = key
+      sub_option.parent = self
+      options[key] = sub_option
     end
   end
 
