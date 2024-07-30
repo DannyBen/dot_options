@@ -1,0 +1,4 @@
+debug = true
+output.color = true
+skin.background.color = :black
+skin.background.texture = "Stripes"

@@ -1,0 +1,10 @@
+*.gem
+/coverage
+/debug.runfile
+/dev
+/Gemfile.lock
+/gems
+/spec/coverage
+/spec/status.txt
+/spec/tmp
+/tmp

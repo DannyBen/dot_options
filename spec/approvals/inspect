@@ -1,0 +1,1 @@
+{ debug: true, output: { color: true }, skin: { background: { color: :black, texture: "Stripes" } } }

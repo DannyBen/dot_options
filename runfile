@@ -1,0 +1,9 @@
+require 'debug'
+require 'dot_options'
+require 'dot_options/version'
+
+title   'DotOptions Developer Toolbelt'
+summary 'Runfile tasks for building the DotOptions gem'
+
+import_gem 'runfile-tasks/gem'
+import 'debug'
