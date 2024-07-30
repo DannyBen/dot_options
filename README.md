@@ -17,6 +17,7 @@ $ gem install dot_options
 ## Usage
 
 ```ruby
+# Usage
 require 'dot_options'
 
 # Initialize a DotOptions object with a hash:
@@ -58,6 +59,7 @@ p options
 Subclassing `DotOptions` is a useful way to have an object with default options.
 
 ```ruby
+# Subclassing
 require 'dot_options'
 
 class Skin < DotOptions
