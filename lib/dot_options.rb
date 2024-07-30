@@ -4,11 +4,12 @@ class DotOptions
   attr_reader :options
   attr_accessor :key, :parent
 
-  def initialize(options = {})
+  def initialize(options = {}, &block)
     @options = options
     @key = nil
     @parent = nil
     build_options
+    instance_eval(&block) if block_given?
   end
 
   def inspect

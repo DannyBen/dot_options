@@ -34,4 +34,16 @@ describe 'DotOptions subclassing' do
       expect(subject.code.font).to eq 'JetBrains Mono'
     end
   end
+
+  context 'when initializing with a block' do
+    subject { Skin.new { border.color = :dark_red }  }
+    
+    it 'evaluates the block with the instance context' do
+      expect(subject.border.color).to eq :dark_red
+    end
+
+    it 'retains the original options structure' do
+      expect(subject.border.width).to eq 3
+    end
+  end
 end
