@@ -10,13 +10,13 @@ describe DotOptions do
   end
 
   describe '#inspect' do
-    it 'returns a developer-friently string' do
+    it 'returns a developer-friendly string' do
       expect(subject.inspect).to match_approval('inspect')
     end
   end
 
   describe '#to_s' do
-    it 'returns a user-friently string' do
+    it 'returns a user-friendly string' do
       expect(subject.to_s).to match_approval('to_s')
     end
   end
@@ -51,6 +51,19 @@ describe DotOptions do
     context 'with an invalid option' do
       it 'raises OptionNotFoundError with a clear message' do
         expect { subject.skin.background.border }.to raise_approval('option-not-found')
+      end
+    end
+
+    context 'when the object was initialized with string keys' do
+      let(:options) { { 'skin' => { 'background' => { 'color' => :green } } } }
+
+      it 'enables read access as if the keys were symbols' do
+        expect(subject.skin.background.color).to eq :green
+      end
+
+      it 'enables write access as if the keys were symbols' do
+        subject.skin.background.color = :blue
+        expect(subject.skin.background.color).to eq :blue
       end
     end
   end
