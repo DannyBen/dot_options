@@ -90,11 +90,16 @@ skin = Skin.new border: { color: :yellow }
 puts skin.border  
 #=> color = :yellow
 
-# You can overcome this by initializing with a block
+# You can overcome this by initializing with a block, like this:
 skin = Skin.new { border.color = :yellow }
 puts skin.border
 #=> color = :yellow
 #=> width = 3
+
+# ... or like this
+skin = Skin.new { |skin| skin.color = :cyan }
+p skin.color
+#=> :cyan
 ```
 
 ## Contributing / Support
