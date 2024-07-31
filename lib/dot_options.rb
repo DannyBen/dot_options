@@ -50,6 +50,7 @@ class DotOptions
 private
 
   def build_options
+    options.transform_keys!(&:to_sym)
     options.each do |key, value|
       next unless value.is_a? Hash
 
