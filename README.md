@@ -63,14 +63,16 @@ Subclassing `DotOptions` is a useful way to have an object with default options.
 require 'dot_options'
 
 class Skin < DotOptions
-  DEFAULTS = {
-    color: :black,
-    border: { color: :red, width: 3 },
-    background: { color: :lime, texture: 'Stripes' },
-  }
-
   def initialize(options = nil)
-    super DEFAULTS.merge(options || {})
+    super defaults.merge(options || {})
+  end
+
+  def defaults
+    {
+      color: :black,
+      border: { color: :red, width: 3 },
+      background: { color: :lime, texture: 'Stripes' },
+    }
   end
 end
 
