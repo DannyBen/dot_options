@@ -50,7 +50,7 @@ describe DotOptions do
 
     context 'with an invalid option' do
       it 'raises OptionNotFoundError with a clear message' do
-        expect { subject.skin.background.border }.to raise_approval('option-not-found1')
+        expect { subject.skin.background.border }.to raise_approval('option-not-found')
       end
     end
   end

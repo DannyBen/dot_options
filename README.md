@@ -49,9 +49,9 @@ puts options
 #=> skin.foreground.color = :white
 #=> skin.foreground.font = "JetBrains Mono"
 
-# ... or a compact inspection string
-p options
-#=> { debug: true, output: { color: true }, skin: { background: { color: :black, texture: "Stripes" }, foreground: { color: :white, font: "JetBrains Mono" } } }
+# ... or a compact inspection string for any branch
+p options.skin.background
+#=> { color: :black, texture: "Stripes" }
 ```
 
 ### Subclassing
