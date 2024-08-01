@@ -32,13 +32,8 @@ options = DotOptions.new opts
 p options.skin.background.color
 #=> :black
 
-# Update any option with dot-notation:
+# Update any option leaf with dot-notation:
 options.skin.background.color = :black
-
-# ... or create an entire branch by providing a hash
-options.skin.foreground = { color: :white, font: 'JetBrains Mono' }
-p options.skin.foreground.font
-#=> "JetBrains Mono"
 
 # Print a flat view of all options
 puts options
@@ -46,12 +41,10 @@ puts options
 #=> output.color = true
 #=> skin.background.color = :black
 #=> skin.background.texture = "Stripes"
-#=> skin.foreground.color = :white
-#=> skin.foreground.font = "JetBrains Mono"
 
 # ... or a compact inspection string for any branch
-p options.skin.background
-#=> { color: :black, texture: "Stripes" }
+p options.skin
+#=> <background: <color: :black, texture: "Stripes">>
 ```
 
 ### Subclassing
@@ -76,32 +69,32 @@ class Skin < DotOptions
   end
 end
 
-# Get an object with the default settings
+# Get an object with the default options
 skin = Skin.new 
 p skin.background.color
 #=> :lime
 
-# Get an object and override some settings
+# Get an object and override some root options using a hash
 skin = Skin.new color: :blue
 p skin.color
 #=> :blue
 
-# Note that when initializing a subclass with a hash, it will replace
-# the given branch. In this case border.width will be lost.
-skin = Skin.new border: { color: :yellow }
-puts skin.border  
-#=> color = :yellow
-
-# You can overcome this by initializing with a block, like this:
+# Get an object and update some deep options using a block
 skin = Skin.new { border.color = :yellow }
 puts skin.border
 #=> color = :yellow
 #=> width = 3
 
-# ... or like this
-skin = Skin.new { |skin| skin.color = :cyan }
+# The initialization block receives the object itself which can be useful
+# in some cases
+skin = Skin.new do |skin|
+  skin.color = :cyan
+  skin.border.width = 10
+end
 p skin.color
+p skin.border
 #=> :cyan
+#=> <color: :red, width: 10>
 ```
 
 ## Contributing / Support

@@ -44,7 +44,7 @@ private
         value._parent = self
       end
 
-      send "#{key}=", value
+      send :"#{key}=", value
     end
   end
 
