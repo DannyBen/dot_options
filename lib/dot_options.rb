@@ -1,74 +1,57 @@
 class DotOptions
-  OptionNotFoundError = Class.new StandardError
+  attr_reader :_options
+  attr_accessor :_key, :_parent, :_full_path
 
-  attr_reader :options
-  attr_accessor :key, :parent
-
-  def initialize(options = {}, &block)
-    @options = options
-    @key = nil
-    @parent = nil
-    build_options
+  def initialize(base_options = {}, &block)
+    @_key = nil
+    @_parent = nil
+    @_options = []
+    @_full_path = []
+    _build_options base_options
     instance_eval(&block) if block
   end
 
   def inspect
-    "{ #{options.map { |key, value| "#{key}: #{value.inspect}" }.join(', ')} }"
+    "<#{_options.map { |key| "#{key}: #{send(key).inspect}" }.join(', ')}>"
   end
 
   def to_s
-    flat_options.map { |key, value| "#{key} = #{value.inspect}" }.join "\n"
+    _flat_options.map { |key, value| "#{key} = #{value.inspect}" }.join "\n"
   end
 
-  def flat_options(prefix = nil)
+protected
+
+  def _flat_options(prefix = nil)
     result = {}
-    options.each do |key, value|
-      full_key = [prefix, key].compact.join '.'
-      opts = value.is_a?(DotOptions) ? value.flat_options(full_key) : { full_key => value }
+    _options.each do |key|
+      value = send key
+      full_key = [prefix, key].compact.join('.')
+      opts = value.is_a?(DotOptions) ? value._flat_options(full_key) : { full_key => value }
       result.merge! opts
     end
-
     result
-  end
-
-  def method_missing(name, *args)
-    if name.to_s.end_with?('=')
-      key = name.to_s.chomp('=').to_sym
-      options[key] = args.first
-      build_options if args.first.is_a? Hash
-    elsif options.has_key? name
-      options[name]
-    else
-      raise OptionNotFoundError, "Option '#{full_path(name)}' not found"
-    end
-  end
-
-  def respond_to_missing?(name, include_private = false)
-    options.has_key?(name.to_s.chomp('=').to_sym) || super
   end
 
 private
 
-  def build_options
-    options.transform_keys!(&:to_sym)
+  def _build_options(options)
     options.each do |key, value|
-      next unless value.is_a? Hash
+      _define_accessor key
+      if value.is_a? Hash
+        value = DotOptions.new value
+        value._full_path = _full_path + [key]
+        value._key = key
+        value._parent = self
+      end
 
-      sub_option = DotOptions.new(value)
-      sub_option.key = key
-      sub_option.parent = self
-      options[key] = sub_option
+      send "#{key}=", value
     end
   end
 
-  def full_path(name)
-    ancestors = [name]
-    current = self
-    while current.is_a? DotOptions
-      ancestors.unshift(current.key) if current.key
-      current = current.parent
+  def _define_accessor(key)
+    _options.push key
+    singleton_class.class_eval do
+      attr_accessor key.to_sym
     end
-
-    ancestors.join '.'
   end
 end
