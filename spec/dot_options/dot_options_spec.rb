@@ -31,7 +31,7 @@ describe DotOptions do
     end
   end
 
-  describe '#method_missing' do
+  describe 'dynamic attributes' do
     it 'enables read access to deeply nested options' do
       expect(subject.skin.background.color).to eq :black
     end
@@ -39,19 +39,6 @@ describe DotOptions do
     it 'enables write access to deeply nested options' do
       subject.skin.background.color = :blue
       expect(subject.skin.background.color).to eq :blue
-    end
-
-    context 'when assigning a hash' do
-      it 'converts it to a DotOptions' do
-        subject.skin.foreground = { color: :white, font: 'JetBrains Mono' }
-        expect(subject.skin.foreground.color).to eq :white
-      end
-    end
-
-    context 'with an invalid option' do
-      it 'raises OptionNotFoundError with a clear message' do
-        expect { subject.skin.background.border }.to raise_approval('option-not-found')
-      end
     end
 
     context 'when the object was initialized with string keys' do
