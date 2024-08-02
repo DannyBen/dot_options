@@ -19,6 +19,14 @@ class DotOptions
     _flat_options.map { |key, value| "#{key} = #{value.inspect}" }.join "\n"
   end
 
+  def to_h
+    _options.to_h do |key|
+      value = send key
+      value = value.to_h if value.is_a? DotOptions
+      [key, value]
+    end
+  end
+
 protected
 
   def _flat_options(prefix = nil)
