@@ -21,6 +21,12 @@ describe DotOptions do
     end
   end
 
+  describe '#to_h' do
+    it 'returns a hash of all options' do
+      expect(subject.to_h).to eq options
+    end
+  end
+
   describe '#respond_to?' do
     it 'returns true for available options' do
       expect(subject.skin.background).to respond_to :color
