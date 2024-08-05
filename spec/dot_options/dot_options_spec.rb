@@ -53,7 +53,7 @@ describe DotOptions do
         expect(subject.skin[:color]).to eq :red
       end
     end
-  end  
+  end
 
   describe 'dynamic attributes' do
     it 'enables read access to deeply nested options' do
