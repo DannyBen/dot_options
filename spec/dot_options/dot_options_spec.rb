@@ -37,6 +37,24 @@ describe DotOptions do
     end
   end
 
+  describe '#[]' do
+    it 'returns the value if the key exists' do
+      expect(subject.skin[:background][:color]).to eq :black
+    end
+
+    it 'returns nil if the key does not exist' do
+      expect(subject.skin[:stroke]).to be_nil
+    end
+
+    context 'with string-keys initialization dictionary' do
+      let(:options) { { 'skin' => { 'color' => :red } } }
+
+      it 'returns the value as if the keys were symbols' do
+        expect(subject.skin[:color]).to eq :red
+      end
+    end
+  end
+
   describe 'dynamic attributes' do
     it 'enables read access to deeply nested options' do
       expect(subject.skin.background.color).to eq :black
