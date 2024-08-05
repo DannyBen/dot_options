@@ -45,6 +45,12 @@ puts options
 # ... or a compact inspection string for any branch
 p options.skin
 #=> <background: <color: :black, texture: "Stripes">>
+
+# Access is also possible using []
+p options.skin[:background].color
+p options.skin[:background][:color]
+#=> :black
+#=> :black
 ```
 
 ### Subclassing

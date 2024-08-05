@@ -11,6 +11,10 @@ class DotOptions
     instance_eval(&block) if block
   end
 
+  def [](key)
+    _options.include?(key.to_sym) ? send(key.to_sym) : nil
+  end
+
   def inspect
     "<#{_options.map { |key| "#{key}: #{send(key).inspect}" }.join(', ')}>"
   end
@@ -57,7 +61,7 @@ private
   end
 
   def _define_accessor(key)
-    _options.push key
+    _options.push key.to_sym
     singleton_class.class_eval do
       attr_accessor key.to_sym
     end
