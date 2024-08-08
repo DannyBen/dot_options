@@ -61,6 +61,8 @@ private
   end
 
   def _define_accessor(key)
+    raise NameError, "invalid attribute name `#{key}'" unless key.respond_to?(:to_sym)
+
     _options.push key.to_sym
     singleton_class.class_eval do
       attr_accessor key.to_sym

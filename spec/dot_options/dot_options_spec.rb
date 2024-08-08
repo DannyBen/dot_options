@@ -9,6 +9,34 @@ describe DotOptions do
     }
   end
 
+  describe '#initialize' do
+    it 'creates deep methods for each hash key' do
+      expect(subject.output.color).to be true
+    end
+
+    context 'when a block is given' do
+      it 'yields self' do
+        expect { |b| described_class.new(&b) }.to yield_with_args(described_class)
+      end
+    end
+
+    context 'with keys that do not respond to .to_sym' do
+      let(:options) { { 10 => 'some value' } }
+
+      it 'raises a NameError' do
+        expect { subject }.to raise_error(NameError, "invalid attribute name `10'")
+      end
+    end
+
+    context 'with keys that cannot be used as a method name' do
+      let(:options) { { '--option' => 'some value' } }
+
+      it 'raises a NameError' do
+        expect { subject }.to raise_error(NameError, "invalid attribute name `--option'")
+      end
+    end
+  end
+
   describe '#inspect' do
     it 'returns a developer-friendly string' do
       expect(subject.inspect).to match_approval('inspect')
