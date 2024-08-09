@@ -2,12 +2,12 @@ class DotOptions
   attr_reader :_options
   attr_accessor :_key, :_parent, :_full_path
 
-  def initialize(base_options = {}, &block)
+  def initialize(base_options = nil, &block)
     @_key = nil
     @_parent = nil
     @_options = []
     @_full_path = []
-    _build_options base_options
+    _build_options(base_options || {})
     instance_eval(&block) if block
   end
 
