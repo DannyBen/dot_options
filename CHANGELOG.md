@@ -1,6 +1,14 @@
 Changelog
 ========================================
 
+v0.1.2 - 2024-08-13
+----------------------------------------
+
+- Add hash access (`#[]`) [`097411b`](https://github.com/DannyBen/dot_options/commit/097411b)
+- Raise `NameError` on invalid keys [`7856fc0`](https://github.com/DannyBen/dot_options/commit/7856fc0)
+- Compare [`v0.1.1..v0.1.2`](https://github.com/dannyben/dot_options/compare/v0.1.1..v0.1.2)
+
+
 v0.1.1 - 2024-08-02
 ----------------------------------------
 
