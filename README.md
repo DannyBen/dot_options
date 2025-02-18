@@ -1,6 +1,6 @@
 # DotOptions - Options object with dot-notation access
 
-Convert any hash to a an object with deep read/write dot-notation access.
+Convert any hash to an object with deep read/write dot-notation access.
 
 [![Gem Version](https://badge.fury.io/rb/dot_options.svg)](https://badge.fury.io/rb/dot_options)
 [![Build Status](https://github.com/DannyBen/dot_options/workflows/Test/badge.svg)](https://github.com/DannyBen/dot_options/actions?query=workflow%3ATest)
