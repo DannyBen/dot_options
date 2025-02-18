@@ -32,7 +32,7 @@ describe DotOptions do
       let(:options) { { '--option' => 'some value' } }
 
       it 'raises a NameError' do
-        expect { subject }.to raise_error(NameError, "invalid attribute name `--option'")
+        expect { subject }.to raise_error(NameError, /invalid attribute name .--option./)
       end
     end
   end
