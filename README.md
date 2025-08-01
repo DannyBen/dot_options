@@ -2,12 +2,6 @@
 
 Convert any hash to an object with deep read/write dot-notation access.
 
-[![Gem Version](https://badge.fury.io/rb/dot_options.svg)](https://badge.fury.io/rb/dot_options)
-[![Build Status](https://github.com/DannyBen/dot_options/workflows/Test/badge.svg)](https://github.com/DannyBen/dot_options/actions?query=workflow%3ATest)
-[![Maintainability](https://api.codeclimate.com/v1/badges/9506098f88fd04fdefae/maintainability)](https://codeclimate.com/github/DannyBen/dot_options/maintainability)
-
----
-
 ## Install
 
 ```
