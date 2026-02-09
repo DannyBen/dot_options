@@ -1,5 +1,7 @@
 # DotOptions - Options object with dot-notation access
 
+![repocard](https://repocard.dannyben.com/svg/dot_options.svg)
+
 Convert any hash to an object with deep read/write dot-notation access.
 
 ## Install
